@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Minecraft Android</string>
+    <string name="catalog_debug_title">Phase 1 Smoke Screen</string>
+    <string name="catalog_loading">Loading catalog…</string>
+    <string name="catalog_empty">No categories were parsed from the catalog payload.</string>
+    <string name="catalog_retry">Retry</string>
+    <string name="catalog_status_success">Loaded %1$d categories and %2$d videos.</string>
+    <string name="catalog_status_error">Catalog loading failed.</string>
+    <string name="catalog_endpoint_note">Source: CloudFront catalog JSON</string>
+    <string name="catalog_playback_ready">Playback resolver host is allowlisted for Phase 4.</string>
+    <string name="catalog_thumbnail">Catalog thumbnail</string>
+</resources>
