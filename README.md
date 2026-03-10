@@ -1,4 +1,4 @@
-# Minecraft Android — Phase 2 Complete
+# Minecraft Android —  Complete
 
 This workspace contains a single-module Kotlin Android app using Jetpack Compose, now with a fully-implemented categories grid screen and app navigation shell.
 
