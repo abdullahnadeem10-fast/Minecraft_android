@@ -12,10 +12,10 @@ object AppDestinations {
     fun categoryDetailRoute(categoryId: String): String =
         "category/${Uri.encode(categoryId)}"
 
-    // Video playback placeholder destination (replaced by real player in Phase 4)
+    // Video player destination
     const val VideoUrlArg = "videoUrl"
-    const val VideoPlaceholderRoute = "video/{$VideoUrlArg}"
+    const val VideoPlayerRoute = "player/{$VideoUrlArg}"
 
-    fun videoPlaceholderRoute(youtubeUrl: String): String =
-        "video/${Uri.encode(youtubeUrl)}"
+    fun videoPlayerRoute(youtubeUrl: String): String =
+        "player/${Uri.encode(youtubeUrl)}"
 }

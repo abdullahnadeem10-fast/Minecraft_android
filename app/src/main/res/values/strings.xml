@@ -27,4 +27,8 @@
     <string name="video_play_button">Play %1$s</string>
     <string name="video_thumbnail_description">Thumbnail for %1$s</string>
     <string name="video_placeholder_message">Playback coming in Phase 4</string>
+    <string name="player_resolving">Loading video…</string>
+    <string name="player_error_title">Playback Error</string>
+    <string name="player_retry">Retry</string>
+    <string name="player_back">Back</string>
 </resources>

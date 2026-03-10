@@ -29,6 +29,7 @@ fun MinecraftVideosApp(
 
         AppNavHost(
             catalogRepository = catalogRepository,
+            playbackRepository = playbackRepository,
             categoriesUiState = categoriesUiState,
             onRetry = viewModel::refresh,
             modifier = modifier

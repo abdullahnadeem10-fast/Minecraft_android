@@ -1,5 +1,6 @@
 package com.abdullahnadeem.minecraftandroid.data.mapper
 
+import android.util.Log
 import com.abdullahnadeem.minecraftandroid.data.model.CatalogDto
 import com.abdullahnadeem.minecraftandroid.data.model.CategoryDto
 import com.abdullahnadeem.minecraftandroid.data.model.VideoDto
@@ -15,7 +16,8 @@ import kotlinx.serialization.json.booleanOrNull
 import kotlinx.serialization.json.contentOrNull
 import kotlinx.serialization.json.doubleOrNull
 import kotlinx.serialization.json.intOrNull
-import kotlinx.serialization.json.jsonObject
+
+private const val TAG = "CatalogMapper"
 
 private val catalogJson = Json {
     ignoreUnknownKeys = true
@@ -25,11 +27,19 @@ private val catalogJson = Json {
 
 fun parseCatalogPayload(payload: String): CatalogDto {
     val root = catalogJson.parseToJsonElement(payload)
+    Log.d(TAG, "Root JSON type: ${root::class.simpleName}")
+    if (root is JsonObject) {
+        Log.d(TAG, "Root keys: ${root.keys.take(20)}")
+    }
+    if (root is JsonArray) {
+        Log.d(TAG, "Root array size: ${root.size}")
+    }
     val categories = when (root) {
         is JsonArray -> parseCategoriesArray(root)
         is JsonObject -> parseCatalogObject(root)
         else -> emptyList()
     }
+    Log.d(TAG, "parseCatalogPayload result: ${categories.size} categories")
     return CatalogDto(categories = categories)
 }
 
@@ -54,7 +64,8 @@ fun CatalogDto.toDomainCategories(): List<Category> = categories.map { category 
 }
 
 private fun parseCatalogObject(root: JsonObject): List<CategoryDto> {
-    val categoryArrays = listOf("categories", "data", "items", "results")
+    Log.d(TAG, "parseCatalogObject: root keys = ${root.keys.toList()}")
+    val categoryArrays = listOf("channels", "categories", "data", "items", "results")
         .mapNotNull(root::get)
         .mapNotNull { it as? JsonArray }
 
@@ -62,6 +73,7 @@ private fun parseCatalogObject(root: JsonObject): List<CategoryDto> {
         .firstOrNull { array -> array.any { it is JsonObject && looksLikeCategory(it) } }
         ?.let(::parseCategoriesArray)
         .orEmpty()
+    Log.d(TAG, "explicitCategories from keys ${listOf("categories","data","items","results")}: ${explicitCategories.size}")
 
     if (explicitCategories.isNotEmpty()) {
         return explicitCategories
@@ -76,6 +88,7 @@ private fun parseCatalogObject(root: JsonObject): List<CategoryDto> {
             parseVideo(videoObject, index, null, null)
         }
         .orEmpty()
+    Log.d(TAG, "directVideos found: ${directVideos.size}")
 
     if (directVideos.isNotEmpty()) {
         return groupVideosIntoCategories(directVideos)
@@ -88,23 +101,29 @@ private fun parseCatalogObject(root: JsonObject): List<CategoryDto> {
     }
 }
 
-private fun parseCategoriesArray(array: JsonArray): List<CategoryDto> = array.mapIndexedNotNull { index, element ->
-    val obj = element as? JsonObject ?: return@mapIndexedNotNull null
-    when {
-        looksLikeCategory(obj) -> parseCategory(obj, index)
-        looksLikeVideo(obj) -> null
-        else -> null
+private fun parseCategoriesArray(array: JsonArray): List<CategoryDto> {
+    Log.d(TAG, "parseCategoriesArray: ${array.size} elements")
+    array.take(2).forEachIndexed { i, el ->
+        if (el is JsonObject) Log.d(TAG, "  element[$i] keys: ${el.keys.take(15)}")
     }
-}.ifEmpty {
-    val videos = array.mapIndexedNotNull { index, element ->
+    return array.mapIndexedNotNull { index, element ->
         val obj = element as? JsonObject ?: return@mapIndexedNotNull null
-        if (looksLikeVideo(obj)) parseVideo(obj, index, null, null) else null
+        when {
+            looksLikeCategory(obj) -> parseCategory(obj, index)
+            looksLikeVideo(obj) -> null
+            else -> null
+        }
+    }.ifEmpty {
+        val videos = array.mapIndexedNotNull { index, element ->
+            val obj = element as? JsonObject ?: return@mapIndexedNotNull null
+            if (looksLikeVideo(obj)) parseVideo(obj, index, null, null) else null
+        }
+        groupVideosIntoCategories(videos)
     }
-    groupVideosIntoCategories(videos)
 }
 
 private fun parseCategory(obj: JsonObject, index: Int): CategoryDto {
-    val title = obj.pickString("title", "name", "label", "category") ?: "Category ${index + 1}"
+    val title = obj.pickString("channelTitle", "title", "name", "label", "category") ?: "Category ${index + 1}"
     val id = obj.pickString("id", "slug", "key") ?: slugify(title, "category-$index")
     val videosArray = obj.pickArray("videos", "items", "entries", "children")
     val videos = videosArray?.mapIndexedNotNull { videoIndex, element ->
@@ -116,6 +135,7 @@ private fun parseCategory(obj: JsonObject, index: Int): CategoryDto {
         id = id,
         title = title,
         thumbnailUrl = obj.pickString(
+            "channelThumbnail",
             "thumbnail",
             "thumbnailUrl",
             "thumbnail_url",
@@ -152,6 +172,7 @@ private fun parseVideo(
         title = title,
         description = obj.pickString("description", "summary", "details"),
         thumbnailUrl = obj.pickString(
+            "videoThumbnail",
             "thumbnail",
             "thumbnailUrl",
             "thumbnail_url",
@@ -182,7 +203,7 @@ private fun groupVideosIntoCategories(videos: List<VideoDto>): List<CategoryDto>
     .sortedBy { it.title.lowercase() }
 
 private fun looksLikeCategory(obj: JsonObject): Boolean {
-    val hasCategoryTitle = obj.pickString("title", "name", "label", "category") != null
+    val hasCategoryTitle = obj.pickString("channelTitle", "title", "name", "label", "category") != null
     val hasNestedVideos = obj.pickArray("videos", "items", "entries", "children") != null
     return hasCategoryTitle && hasNestedVideos
 }
@@ -194,7 +215,7 @@ private fun looksLikeVideo(obj: JsonObject): Boolean {
 }
 
 private fun JsonObject.pickString(vararg keys: String): String? = keys.firstNotNullOfOrNull { key ->
-    this[key].primitiveContentOrNull()
+    this[key]?.primitiveContentOrNull()
 }
 
 private fun JsonObject.pickArray(vararg keys: String): JsonArray? = keys.firstNotNullOfOrNull { key ->

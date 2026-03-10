@@ -11,16 +11,18 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.abdullahnadeem.minecraftandroid.data.repository.CatalogRepository
+import com.abdullahnadeem.minecraftandroid.data.repository.PlaybackRepository
 import com.abdullahnadeem.minecraftandroid.ui.categories.CategoriesScreen
 import com.abdullahnadeem.minecraftandroid.ui.categories.CategoriesUiState
 import com.abdullahnadeem.minecraftandroid.ui.categorydetail.CategoryDetailScreen
 import com.abdullahnadeem.minecraftandroid.ui.categorydetail.CategoryDetailViewModel
 import com.abdullahnadeem.minecraftandroid.ui.categorydetail.CategoryDetailViewModelFactory
-import com.abdullahnadeem.minecraftandroid.ui.videos.VideoPlaybackPlaceholder
+import com.abdullahnadeem.minecraftandroid.ui.player.VideoPlayerScreen
 
 @Composable
 fun AppNavHost(
     catalogRepository: CatalogRepository,
+    playbackRepository: PlaybackRepository,
     categoriesUiState: CategoriesUiState,
     onRetry: () -> Unit,
     modifier: Modifier = Modifier
@@ -59,13 +61,13 @@ fun AppNavHost(
                 uiState = uiState,
                 onBack = { navController.popBackStack() },
                 onVideoClick = { youtubeUrl ->
-                    navController.navigate(AppDestinations.videoPlaceholderRoute(youtubeUrl))
+                    navController.navigate(AppDestinations.videoPlayerRoute(youtubeUrl))
                 }
             )
         }
 
         composable(
-            route = AppDestinations.VideoPlaceholderRoute,
+            route = AppDestinations.VideoPlayerRoute,
             arguments = listOf(
                 navArgument(AppDestinations.VideoUrlArg) {
                     type = NavType.StringType
@@ -76,8 +78,10 @@ fun AppNavHost(
                 ?.getString(AppDestinations.VideoUrlArg)
                 .orEmpty()
 
-            VideoPlaybackPlaceholder(
+            VideoPlayerScreen(
+                youtubeUrl = videoUrl,
                 videoTitle = videoUrl,
+                playbackRepository = playbackRepository,
                 onBack = { navController.popBackStack() }
             )
         }

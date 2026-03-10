@@ -23,6 +23,6 @@ class PlaybackRepositoryImpl(
         val payload = response.body()?.takeIf { it.isNotBlank() }
             ?: throw IOException("Playback resolver returned an empty body.")
         val dto = json.decodeFromString<PlaybackResponseDto>(payload)
-        return dto.tag?.url ?: throw IOException("Playback resolver response did not include tag.url.")
+        return dto.url ?: throw IOException("Playback resolver response did not include url.")
     }
 }

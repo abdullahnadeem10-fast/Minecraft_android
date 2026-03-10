@@ -1,0 +1,260 @@
+{
+  "categories": [
+    {
+      "id": "survival",
+      "title": "Survival Basics",
+      "thumbnailUrl": "https://picsum.photos/seed/survival/640/360",
+      "videos": [
+        {
+          "id": "survival-1",
+          "title": "First Night Survival Plan",
+          "description": "Gather wood, craft tools, and stay safe through your very first night.",
+          "thumbnailUrl": "https://picsum.photos/seed/creeper/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+          "categoryId": "survival",
+          "categoryTitle": "Survival Basics",
+          "durationText": "12:34"
+        },
+        {
+          "id": "survival-2",
+          "title": "Food Early Game Guide",
+          "description": "Fast ways to secure food with hunting, fishing, and basic farming.",
+          "thumbnailUrl": "https://picsum.photos/seed/foodhunt/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+          "categoryId": "survival",
+          "categoryTitle": "Survival Basics",
+          "durationText": "09:18"
+        },
+        {
+          "id": "survival-3",
+          "title": "Starter Shelter Designs",
+          "description": "Simple starter shelters you can build quickly before nightfall.",
+          "thumbnailUrl": "https://picsum.photos/seed/starterhut/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+          "categoryId": "survival",
+          "categoryTitle": "Survival Basics",
+          "durationText": "11:07"
+        }
+      ]
+    },
+    {
+      "id": "creative",
+      "title": "Creative Builds",
+      "thumbnailUrl": "https://picsum.photos/seed/creative/640/360",
+      "videos": [
+        {
+          "id": "creative-1",
+          "title": "Castle Build Breakdown",
+          "description": "Build a detailed castle with towers, walls, and interior halls.",
+          "thumbnailUrl": "https://picsum.photos/seed/castle/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          "categoryId": "creative",
+          "categoryTitle": "Creative Builds",
+          "durationText": "16:22"
+        },
+        {
+          "id": "creative-2",
+          "title": "Modern House Palette Tips",
+          "description": "Pick blocks and layouts for clean, modern Minecraft houses.",
+          "thumbnailUrl": "https://picsum.photos/seed/modernhouse/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+          "categoryId": "creative",
+          "categoryTitle": "Creative Builds",
+          "durationText": "13:45"
+        },
+        {
+          "id": "creative-3",
+          "title": "Megabuild Planning Workflow",
+          "description": "Plan terrain, scale, and block gradients for massive projects.",
+          "thumbnailUrl": "https://picsum.photos/seed/megabuild/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+          "categoryId": "creative",
+          "categoryTitle": "Creative Builds",
+          "durationText": "18:09"
+        }
+      ]
+    },
+    {
+      "id": "redstone",
+      "title": "Redstone Mechanics",
+      "thumbnailUrl": "https://picsum.photos/seed/redstone/640/360",
+      "videos": [
+        {
+          "id": "redstone-1",
+          "title": "Redstone Circuit Essentials",
+          "description": "Understand repeaters, comparators, and signal flow basics.",
+          "thumbnailUrl": "https://picsum.photos/seed/repeater/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+          "categoryId": "redstone",
+          "categoryTitle": "Redstone Mechanics",
+          "durationText": "14:11"
+        },
+        {
+          "id": "redstone-2",
+          "title": "Automatic Farm Contraptions",
+          "description": "Create compact automated farms using observers and pistons.",
+          "thumbnailUrl": "https://picsum.photos/seed/observer/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+          "categoryId": "redstone",
+          "categoryTitle": "Redstone Mechanics",
+          "durationText": "10:56"
+        },
+        {
+          "id": "redstone-3",
+          "title": "Useful Daily Contraptions",
+          "description": "Build item sorters, hidden doors, and smart storage modules.",
+          "thumbnailUrl": "https://picsum.photos/seed/pistondoor/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/Sintel.mp4",
+          "categoryId": "redstone",
+          "categoryTitle": "Redstone Mechanics",
+          "durationText": "17:03"
+        }
+      ]
+    },
+    {
+      "id": "mining",
+      "title": "Mining & Resources",
+      "thumbnailUrl": "https://picsum.photos/seed/diamond/640/360",
+      "videos": [
+        {
+          "id": "mining-1",
+          "title": "Branch Mining Strategy",
+          "description": "Compare branch, cave, and strip mining for better ore rates.",
+          "thumbnailUrl": "https://picsum.photos/seed/mineshaft/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/SubaruOutbackOnStreetAndDirt.mp4",
+          "categoryId": "mining",
+          "categoryTitle": "Mining & Resources",
+          "durationText": "08:49"
+        },
+        {
+          "id": "mining-2",
+          "title": "Diamond Rush Route",
+          "description": "Efficient level routing and cave choices to find diamonds faster.",
+          "thumbnailUrl": "https://picsum.photos/seed/deepslate/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WeAreGoingOnBullrun.mp4",
+          "categoryId": "mining",
+          "categoryTitle": "Mining & Resources",
+          "durationText": "07:35"
+        }
+      ]
+    },
+    {
+      "id": "pvp",
+      "title": "PvP & Combat",
+      "thumbnailUrl": "https://picsum.photos/seed/pvp/640/360",
+      "videos": [
+        {
+          "id": "pvp-1",
+          "title": "PvP Movement and Aim",
+          "description": "Improve strafing, timing, and hit consistency in duels.",
+          "thumbnailUrl": "https://picsum.photos/seed/swordcrit/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/WhatCarCanYouGetForAGrand.mp4",
+          "categoryId": "pvp",
+          "categoryTitle": "PvP & Combat",
+          "durationText": "09:52"
+        },
+        {
+          "id": "pvp-2",
+          "title": "Best Weapon Loadouts",
+          "description": "Choose sword, axe, bow, and armor combinations for different fights.",
+          "thumbnailUrl": "https://picsum.photos/seed/netherite/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
+          "categoryId": "pvp",
+          "categoryTitle": "PvP & Combat",
+          "durationText": "11:26"
+        }
+      ]
+    },
+    {
+      "id": "farming",
+      "title": "Farming & Food",
+      "thumbnailUrl": "https://picsum.photos/seed/farming/640/360",
+      "videos": [
+        {
+          "id": "farming-1",
+          "title": "High Yield Crop Farms",
+          "description": "Set up wheat, carrot, and potato farms for steady food supplies.",
+          "thumbnailUrl": "https://picsum.photos/seed/wheatfield/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
+          "categoryId": "farming",
+          "categoryTitle": "Farming & Food",
+          "durationText": "10:14"
+        },
+        {
+          "id": "farming-2",
+          "title": "Animal Farm Efficiency",
+          "description": "Design compact cow, sheep, and chicken farms with easy breeding loops.",
+          "thumbnailUrl": "https://picsum.photos/seed/barnyard/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/TearsOfSteel.mp4",
+          "categoryId": "farming",
+          "categoryTitle": "Farming & Food",
+          "durationText": "08:57"
+        }
+      ]
+    },
+    {
+      "id": "mods",
+      "title": "Mods & Plugins",
+      "thumbnailUrl": "https://picsum.photos/seed/mods/640/360",
+      "videos": [
+        {
+          "id": "mods-1",
+          "title": "Top Mods to Start With",
+          "description": "A beginner-friendly list of quality-of-life and gameplay mods.",
+          "thumbnailUrl": "https://picsum.photos/seed/forge/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          "categoryId": "mods",
+          "categoryTitle": "Mods & Plugins",
+          "durationText": "12:08"
+        },
+        {
+          "id": "mods-2",
+          "title": "Best Modpacks for Progression",
+          "description": "Explore tech, magic, and quest-focused modpacks worth playing.",
+          "thumbnailUrl": "https://picsum.photos/seed/modpack/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+          "categoryId": "mods",
+          "categoryTitle": "Mods & Plugins",
+          "durationText": "13:31"
+        }
+      ]
+    },
+    {
+      "id": "adventure",
+      "title": "Adventure & Exploration",
+      "thumbnailUrl": "https://picsum.photos/seed/adventure/640/360",
+      "videos": [
+        {
+          "id": "adventure-1",
+          "title": "Finding the Stronghold",
+          "description": "Use eyes of ender and map clues to locate your nearest stronghold.",
+          "thumbnailUrl": "https://picsum.photos/seed/stronghold/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+          "categoryId": "adventure",
+          "categoryTitle": "Adventure & Exploration",
+          "durationText": "09:40"
+        },
+        {
+          "id": "adventure-2",
+          "title": "Nether Expedition Prep",
+          "description": "Plan safe nether trips with fire resistance, paths, and anchors.",
+          "thumbnailUrl": "https://picsum.photos/seed/nether/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+          "categoryId": "adventure",
+          "categoryTitle": "Adventure & Exploration",
+          "durationText": "11:19"
+        },
+        {
+          "id": "adventure-3",
+          "title": "Journey to The End",
+          "description": "Final prep checklist for defeating the dragon and exploring end cities.",
+          "thumbnailUrl": "https://picsum.photos/seed/enderman/640/360",
+          "youtubeUrl": "https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+          "categoryId": "adventure",
+          "categoryTitle": "Adventure & Exploration",
+          "durationText": "14:27"
+        }
+      ]
+    }
+  ]
+}

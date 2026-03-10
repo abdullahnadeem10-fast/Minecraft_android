@@ -1,6 +1,7 @@
 package com.abdullahnadeem.minecraftandroid
 
 import android.os.Bundle
+import androidx.annotation.RawRes
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import com.abdullahnadeem.minecraftandroid.data.remote.ApiModule
@@ -12,7 +13,11 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val catalogRepository = CatalogRepositoryImpl(ApiModule.catalogApiService)
+        val fallbackCatalogJson = readRawText(R.raw.catalog_fallback)
+        val catalogRepository = CatalogRepositoryImpl(
+            apiService = ApiModule.catalogApiService,
+            fallbackPayload = fallbackCatalogJson
+        )
         val playbackRepository = PlaybackRepositoryImpl(ApiModule.playbackApiService)
 
         setContent {
@@ -21,5 +26,9 @@ class MainActivity : ComponentActivity() {
                 playbackRepository = playbackRepository
             )
         }
+    }
+
+    private fun readRawText(@RawRes resourceId: Int): String {
+        return resources.openRawResource(resourceId).bufferedReader().use { it.readText() }
     }
 }

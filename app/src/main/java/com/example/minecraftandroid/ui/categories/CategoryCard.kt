@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -55,6 +56,8 @@ fun CategoryCard(
                     model = category.thumbnailUrl,
                     contentDescription = stringResource(R.string.category_thumbnail_content_description, category.title),
                     contentScale = ContentScale.Crop,
+                    error = ColorPainter(MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)),
+                    placeholder = ColorPainter(MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)),
                     modifier = Modifier
                         .fillMaxWidth()
                         .aspectRatio(1.25f)

@@ -24,6 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.graphics.painter.ColorPainter
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -71,6 +72,8 @@ fun VideoListItem(
                     model = video.thumbnailUrl,
                     contentDescription = thumbnailDescription,
                     contentScale = ContentScale.Crop,
+                    error = ColorPainter(MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)),
+                    placeholder = ColorPainter(MaterialTheme.colorScheme.primary.copy(alpha = 0.10f)),
                     modifier = Modifier
                         .width(120.dp)
                         .aspectRatio(16f / 9f)
