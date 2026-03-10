@@ -1,30 +1,26 @@
 package com.abdullahnadeem.minecraftandroid.navigation
 
-import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Button
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.res.stringResource
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.abdullahnadeem.minecraftandroid.R
+import com.abdullahnadeem.minecraftandroid.data.repository.CatalogRepository
 import com.abdullahnadeem.minecraftandroid.ui.categories.CategoriesScreen
 import com.abdullahnadeem.minecraftandroid.ui.categories.CategoriesUiState
+import com.abdullahnadeem.minecraftandroid.ui.categorydetail.CategoryDetailScreen
+import com.abdullahnadeem.minecraftandroid.ui.categorydetail.CategoryDetailViewModel
+import com.abdullahnadeem.minecraftandroid.ui.categorydetail.CategoryDetailViewModelFactory
+import com.abdullahnadeem.minecraftandroid.ui.videos.VideoPlaybackPlaceholder
 
 @Composable
 fun AppNavHost(
+    catalogRepository: CatalogRepository,
     categoriesUiState: CategoriesUiState,
     onRetry: () -> Unit,
     modifier: Modifier = Modifier
@@ -41,76 +37,49 @@ fun AppNavHost(
                 uiState = categoriesUiState,
                 onRetry = onRetry,
                 onCategoryClick = { categoryId ->
-                    navController.navigate(AppDestinations.categoryPlaceholderRoute(categoryId))
+                    navController.navigate(AppDestinations.categoryDetailRoute(categoryId))
                 }
             )
         }
 
         composable(
-            route = AppDestinations.CategoryPlaceholderRoute,
+            route = AppDestinations.CategoryDetailRoute,
             arguments = listOf(
                 navArgument(AppDestinations.CategoryIdArg) {
                     type = NavType.StringType
                 }
             )
-        ) { backStackEntry ->
-            val categoryId = backStackEntry.arguments?.getString(AppDestinations.CategoryIdArg).orEmpty()
-            val categoryTitle = (categoriesUiState as? CategoriesUiState.Success)
-                ?.categories
-                ?.firstOrNull { it.id == categoryId }
-                ?.title
-                ?: categoryId
-
-            CategoryPlaceholderScreen(
-                categoryTitle = categoryTitle,
-                onBack = { navController.popBackStack() }
+        ) {
+            val viewModel: CategoryDetailViewModel = viewModel(
+                factory = CategoryDetailViewModelFactory(catalogRepository)
             )
-        }
-    }
-}
+            val uiState by viewModel.uiState.collectAsStateWithLifecycle()
 
-@Composable
-private fun CategoryPlaceholderScreen(
-    categoryTitle: String,
-    onBack: () -> Unit,
-    modifier: Modifier = Modifier
-) {
-    Scaffold(
-        modifier = modifier,
-        topBar = {
-            TopAppBar(
-                title = { Text(text = categoryTitle) },
-                navigationIcon = {
-                    TextButton(onClick = onBack) {
-                        Text(text = stringResource(R.string.navigation_back))
-                    }
+            CategoryDetailScreen(
+                uiState = uiState,
+                onBack = { navController.popBackStack() },
+                onVideoClick = { youtubeUrl ->
+                    navController.navigate(AppDestinations.videoPlaceholderRoute(youtubeUrl))
                 }
             )
         }
-    ) { innerPadding ->
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(innerPadding)
-                .padding(horizontal = 24.dp, vertical = 20.dp),
-            verticalArrangement = Arrangement.Center,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            Text(
-                text = stringResource(R.string.category_placeholder_title),
-                style = MaterialTheme.typography.headlineSmall
+
+        composable(
+            route = AppDestinations.VideoPlaceholderRoute,
+            arguments = listOf(
+                navArgument(AppDestinations.VideoUrlArg) {
+                    type = NavType.StringType
+                }
             )
-            Text(
-                text = stringResource(R.string.category_placeholder_message, categoryTitle),
-                style = MaterialTheme.typography.bodyMedium,
-                modifier = Modifier.padding(top = 12.dp)
+        ) { backStackEntry ->
+            val videoUrl = backStackEntry.arguments
+                ?.getString(AppDestinations.VideoUrlArg)
+                .orEmpty()
+
+            VideoPlaybackPlaceholder(
+                videoTitle = videoUrl,
+                onBack = { navController.popBackStack() }
             )
-            Button(
-                onClick = onBack,
-                modifier = Modifier.padding(top = 20.dp)
-            ) {
-                Text(text = stringResource(R.string.navigation_back_to_categories))
-            }
         }
     }
 }

@@ -13,7 +13,6 @@ import com.abdullahnadeem.minecraftandroid.ui.catalog.CatalogViewModel
 import com.abdullahnadeem.minecraftandroid.ui.catalog.CatalogViewModelFactory
 import com.abdullahnadeem.minecraftandroid.ui.theme.MinecraftAndroidTheme
 
-@Suppress("UNUSED_PARAMETER")
 @Composable
 fun MinecraftVideosApp(
     catalogRepository: CatalogRepository,
@@ -29,6 +28,7 @@ fun MinecraftVideosApp(
         val categoriesUiState by viewModel.categoriesUiState.collectAsStateWithLifecycle()
 
         AppNavHost(
+            catalogRepository = catalogRepository,
             categoriesUiState = categoriesUiState,
             onRetry = viewModel::refresh,
             modifier = modifier

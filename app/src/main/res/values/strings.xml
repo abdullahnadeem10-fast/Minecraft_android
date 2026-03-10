@@ -19,4 +19,12 @@
     <string name="category_placeholder_message">Selected category: %1$s. Phase 3 can replace this destination with the category video list.</string>
     <string name="navigation_back">Back</string>
     <string name="navigation_back_to_categories">Back to categories</string>
+    <string name="category_detail_loading">Loading category…</string>
+    <string name="category_detail_not_found">Category not found.</string>
+    <string name="category_detail_error">Could not load category.</string>
+    <string name="category_detail_empty_videos">No videos in this category.</string>
+    <string name="category_detail_back">Back</string>
+    <string name="video_play_button">Play %1$s</string>
+    <string name="video_thumbnail_description">Thumbnail for %1$s</string>
+    <string name="video_placeholder_message">Playback coming in Phase 4</string>
 </resources>

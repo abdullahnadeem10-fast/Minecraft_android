@@ -33,4 +33,8 @@ class CatalogRepositoryImpl(
         cachedCategories = categories
         return categories
     }
+
+    override suspend fun getCategoryById(id: String): Category? {
+        return getCatalog(forceRefresh = false).firstOrNull { it.id == id }
+    }
 }

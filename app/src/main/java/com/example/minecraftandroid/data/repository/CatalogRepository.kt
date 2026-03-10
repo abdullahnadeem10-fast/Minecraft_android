@@ -5,4 +5,6 @@ import com.abdullahnadeem.minecraftandroid.domain.model.Category
 interface CatalogRepository {
 
     suspend fun getCatalog(forceRefresh: Boolean = false): List<Category>
+
+    suspend fun getCategoryById(id: String): Category?
 }
