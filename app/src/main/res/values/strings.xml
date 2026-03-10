@@ -10,4 +10,13 @@
     <string name="catalog_endpoint_note">Source: CloudFront catalog JSON</string>
     <string name="catalog_playback_ready">Playback resolver host is allowlisted for Phase 4.</string>
     <string name="catalog_thumbnail">Catalog thumbnail</string>
+    <string name="categories_title">Categories</string>
+    <string name="categories_loading">Loading categories…</string>
+    <string name="categories_empty">No categories are available yet.</string>
+    <string name="category_thumbnail_placeholder">No image</string>
+    <string name="category_thumbnail_content_description">Thumbnail for %1$s</string>
+    <string name="category_placeholder_title">Category details are next</string>
+    <string name="category_placeholder_message">Selected category: %1$s. Phase 3 can replace this destination with the category video list.</string>
+    <string name="navigation_back">Back</string>
+    <string name="navigation_back_to_categories">Back to categories</string>
 </resources>
